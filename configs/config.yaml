@@ -1,0 +1,46 @@
+# 模型配置
+model:
+  name: "TransformerCNN"
+  num_classes: 5
+  input_dim: 128  # MFCC特征维度
+  sequence_length: 100  # 序列长度
+  d_model: 256  # Transformer隐藏维度
+  nhead: 8  # 注意力头数
+  num_layers: 4  # Transformer层数
+  dropout: 0.1
+  
+# 数据配置
+data:
+  sample_rate: 44100
+  duration: 2.0  # 音频时长（秒）
+  hop_length: 512
+  n_mels: 128
+  n_fft: 2048
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  
+# 训练配置
+training:
+  batch_size: 32
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  scheduler: "cosine"
+  warmup_epochs: 10
+  early_stopping: 10
+  
+# 数据增强配置
+augmentation:
+  time_mask_num: 2
+  freq_mask_num: 2
+  time_mask_param: 10
+  freq_mask_param: 15
+  noise_factor: 0.005
+  
+# 路径配置
+paths:
+  data_dir: "data/processed"
+  model_dir: "models"
+  log_dir: "results/logs"
+  output_dir: "results"
